@@ -13,7 +13,7 @@ B) 사이드바 네비게이션
 C) 상단 헤더에 네비게이션 버튼
 D) Other (please describe after [Answer]: tag below)
 
-[Answer]: 
+[Answer]: A
 
 ## Question 2
 메뉴 카테고리 전환 방식은?
@@ -23,7 +23,7 @@ B) 좌측 사이드 카테고리 목록
 C) 드롭다운 선택
 D) Other (please describe after [Answer]: tag below)
 
-[Answer]: 
+[Answer]: B
 
 ## Question 3
 메뉴 카드에서 장바구니 추가 방식은?
@@ -33,7 +33,7 @@ B) 카드 클릭 → 상세 모달에서 수량 선택 후 추가
 C) 카드에 "담기" 버튼 → 1개씩 추가 (수량은 장바구니에서 조절)
 D) Other (please describe after [Answer]: tag below)
 
-[Answer]: 
+[Answer]: B
 
 ## Question 4
 장바구니 UI 위치는?
@@ -43,7 +43,7 @@ B) 화면 우측 사이드 패널 (항상 표시)
 C) 하단 슬라이드업 패널 (접었다 펼 수 있음)
 D) Other (please describe after [Answer]: tag below)
 
-[Answer]: 
+[Answer]: B
 
 ## Question 5
 주문 성공 후 화면 동작은?
@@ -53,7 +53,7 @@ B) 주문 완료 화면 표시 → 사용자가 직접 "메뉴로 돌아가기" 
 C) 주문 내역 화면으로 바로 이동
 D) Other (please describe after [Answer]: tag below)
 
-[Answer]: 
+[Answer]: A
 
 ## Question 6
 태블릿 화면 방향(orientation) 기준은?
@@ -63,7 +63,7 @@ B) 세로(Portrait) 전용
 C) 반응형 (가로/세로 모두 지원)
 D) Other (please describe after [Answer]: tag below)
 
-[Answer]: 
+[Answer]: C
 
 ## Question 7
 메뉴 이미지가 없는 경우 표시 방식은?
@@ -73,7 +73,7 @@ B) 이미지 영역 없이 텍스트만 표시
 C) 아이콘(예: 음식 아이콘)으로 대체
 D) Other (please describe after [Answer]: tag below)
 
-[Answer]: 
+[Answer]: A
 
 ## Question 8
 주문 내역 페이지에서 SSE 실시간 업데이트 시 시각적 피드백은?
@@ -83,7 +83,7 @@ B) 토스트 알림으로 상태 변경 안내
 C) 상태 텍스트만 변경 (별도 애니메이션 없음)
 D) Other (please describe after [Answer]: tag below)
 
-[Answer]: 
+[Answer]: b
 
 ## Question 9
 초기 설정(Setup) 화면에서 입력받을 정보와 방식은?
@@ -93,4 +93,4 @@ B) 매장ID + 테이블번호 + 비밀번호를 QR코드로 스캔
 C) 관리자가 태블릿에서 직접 설정 (한 번만)
 D) Other (please describe after [Answer]: tag below)
 
-[Answer]: 
+[Answer]: c
