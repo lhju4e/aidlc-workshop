@@ -23,7 +23,7 @@ export default function KitchenDisplayPage() {
   const [error, setError] = useState<string | null>(null);
 
   const load = useCallback(async () => {
-    if (!store) return;
+    if (!store) { setLoading(false); return; }
     try {
       setLoading(true);
       const [oRes, tRes] = await Promise.all([

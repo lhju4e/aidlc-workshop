@@ -24,7 +24,7 @@ export default function DashboardPage() {
   const [error, setError] = useState<string | null>(null);
 
   const load = useCallback(async () => {
-    if (!store) return;
+    if (!store) { setLoading(false); return; }
     try {
       setLoading(true);
       const [tRes, oRes] = await Promise.all([

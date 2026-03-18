@@ -21,7 +21,7 @@ export default function LoginPage() {
     setIsLoading(true);
     try {
       const { data } = await authService.login({ storeId, username, password });
-      setAuth(data.token, data.store);
+      setAuth(data.token, data.store ?? { id: data.storeId ?? storeId, name: '', createdAt: '' });
       router.push('/admin/dashboard');
     } catch (err: unknown) {
       const msg = (err as { response?: { data?: { message?: string } } })?.response?.data?.message ?? '로그인에 실패했습니다.';

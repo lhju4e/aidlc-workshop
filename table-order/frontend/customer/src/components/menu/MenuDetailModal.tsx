@@ -18,11 +18,13 @@ export default function MenuDetailModal({ menu, onClose, onAddToCart }: Props) {
         onClick={(e) => e.stopPropagation()}
         data-testid="menu-detail-modal"
       >
-        <img
-          src={menu.imageUrl || '/placeholder.png'}
-          alt={menu.name}
-          className="w-full h-48 object-cover bg-gray-100"
-        />
+        <div className="w-full h-48 overflow-hidden bg-gray-100">
+          <img
+            src={menu.imageUrl || '/placeholder.png'}
+            alt={menu.name}
+            className="w-full h-full object-cover"
+          />
+        </div>
         <div className="p-5">
           <h2 className="text-xl font-bold">{menu.name}</h2>
           {menu.description && <p className="text-gray-500 mt-2 text-sm">{menu.description}</p>}

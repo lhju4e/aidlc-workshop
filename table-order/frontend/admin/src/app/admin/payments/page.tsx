@@ -18,7 +18,7 @@ export default function PaymentManagementPage() {
   const [error, setError] = useState<string | null>(null);
 
   const load = useCallback(async () => {
-    if (!store) return;
+    if (!store) { setLoading(false); return; }
     try {
       setLoading(true);
       const [pRes, oRes] = await Promise.all([

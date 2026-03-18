@@ -11,8 +11,10 @@ export const menuService = {
   createMenu: (data: FormData) =>
     api.post<Menu>('/menus', data, { headers: { 'Content-Type': 'multipart/form-data' } }),
 
-  updateMenu: (id: string, data: Partial<Menu>) =>
-    api.put<Menu>(`/menus/${id}`, data),
+  updateMenu: (id: string, data: Partial<Menu> | FormData) => {
+    const isFormData = data instanceof FormData;
+    return api.put<Menu>(`/menus/${id}`, data, isFormData ? { headers: { 'Content-Type': 'multipart/form-data' } } : undefined);
+  },
 
   deleteMenu: (id: string) =>
     api.delete(`/menus/${id}`),
