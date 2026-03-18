@@ -1,7 +1,8 @@
 // API 응답 타입
 export interface Menu {
   id: string;
-  storeId: string;
+  storeName: string;
+  storeId?: string;
   categoryId: string;
   name: string;
   price: number;
@@ -12,14 +13,16 @@ export interface Menu {
 
 export interface Category {
   id: string;
-  storeId: string;
+  storeName: string;
+  storeId?: string;
   name: string;
   sortOrder: number;
 }
 
 export interface Order {
   id: string;
-  storeId: string;
+  storeName: string;
+  storeId?: string;
   tableId: string;
   sessionId: string;
   orderNumber: number;
@@ -42,7 +45,8 @@ export interface OrderItem {
 
 export interface Table {
   id: string;
-  storeId: string;
+  storeName: string;
+  storeId?: string;
   tableNumber: number;
 }
 
@@ -62,7 +66,8 @@ export interface CartItem {
 }
 
 export interface SetupCredentials {
-  storeId: string;
+  storeName: string;
+  storeId?: string;
   tableNumber: number;
   password: string;
 }

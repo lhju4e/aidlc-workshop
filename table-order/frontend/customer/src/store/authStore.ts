@@ -23,7 +23,7 @@ export const useAuthStore = create<AuthState>((set) => ({
 
   login: async (creds) => {
     const res = await loginTable(creds);
-    const table = { ...res.table, storeId: res.table.storeId || creds.storeId };
+    const table = { ...res.table, storeId: res.table.storeId || creds.storeId || '' };
     localStorage.setItem(STORAGE_KEYS.TOKEN, res.token);
     localStorage.setItem(STORAGE_KEYS.CREDENTIALS, JSON.stringify(creds));
     localStorage.setItem(STORAGE_KEYS.TABLE, JSON.stringify(table));
@@ -38,7 +38,7 @@ export const useAuthStore = create<AuthState>((set) => ({
     try {
       const creds: SetupCredentials = JSON.parse(stored);
       const res = await loginTable(creds);
-      const table = { ...res.table, storeId: res.table.storeId || creds.storeId };
+      const table = { ...res.table, storeId: res.table.storeId || creds.storeId || '' };
       localStorage.setItem(STORAGE_KEYS.TOKEN, res.token);
       localStorage.setItem(STORAGE_KEYS.TABLE, JSON.stringify(table));
       if (res.session?.id) localStorage.setItem(STORAGE_KEYS.SESSION_ID, res.session.id);

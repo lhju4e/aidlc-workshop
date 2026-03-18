@@ -3,7 +3,7 @@ import { useAuthStore } from '../store/authStore';
 
 export default function SetupPage() {
   const login = useAuthStore((s) => s.login);
-  const [storeId, setStoreId] = useState('');
+  const [storeName, setStoreName] = useState('');
   const [tableNumber, setTableNumber] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -11,11 +11,11 @@ export default function SetupPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!storeId || !tableNumber || !password) { setError('모든 항목을 입력해주세요'); return; }
+    if (!storeName || !tableNumber || !password) { setError('모든 항목을 입력해주세요'); return; }
     setIsSubmitting(true);
     setError('');
     try {
-      await login({ storeId, tableNumber: Number(tableNumber), password });
+      await login({ storeName, tableNumber: Number(tableNumber), password });
     } catch {
       setError('로그인에 실패했습니다. 정보를 확인해주세요.');
     } finally {
@@ -29,7 +29,7 @@ export default function SetupPage() {
         <h1 className="text-2xl font-bold text-center">테이블 설정</h1>
         <p className="text-gray-500 text-sm text-center">관리자가 초기 설정을 진행합니다</p>
         {error && <p className="text-red-500 text-sm text-center" data-testid="setup-error">{error}</p>}
-        <input data-testid="setup-store-id" type="text" placeholder="매장 ID" value={storeId} onChange={(e) => setStoreId(e.target.value)} className="w-full px-4 py-3 border rounded-xl" />
+        <input data-testid="setup-store-name" type="text" placeholder="매장명" value={storeName} onChange={(e) => setStoreName(e.target.value)} className="w-full px-4 py-3 border rounded-xl" />
         <input data-testid="setup-table-number" type="number" placeholder="테이블 번호" value={tableNumber} onChange={(e) => setTableNumber(e.target.value)} className="w-full px-4 py-3 border rounded-xl" />
         <input data-testid="setup-password" type="password" placeholder="비밀번호" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full px-4 py-3 border rounded-xl" />
         <button data-testid="setup-submit" type="submit" disabled={isSubmitting} className="w-full py-3 bg-blue-600 text-white rounded-xl font-medium disabled:bg-gray-300">
