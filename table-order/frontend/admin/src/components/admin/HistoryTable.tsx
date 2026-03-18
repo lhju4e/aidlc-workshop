@@ -10,8 +10,13 @@ interface Props {
 export default function HistoryTable({ orders }: Props) {
   if (orders.length === 0) return <p className="text-sm text-gray-400 py-8 text-center">주문 내역이 없습니다.</p>;
 
+  const total = orders.reduce((sum, o) => sum + o.totalAmount, 0);
+
   return (
     <div className="overflow-x-auto" data-testid="history-table">
+      <div className="mb-3 text-right text-sm font-semibold">
+        총 {orders.length}건 · <span className="text-blue-600">{total.toLocaleString()}원</span>
+      </div>
       <table className="w-full text-sm">
         <thead className="bg-gray-50">
           <tr>
