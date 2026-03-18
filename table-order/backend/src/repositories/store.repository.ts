@@ -13,4 +13,9 @@ export const storeRepository = {
     const [rows] = await pool.execute<RowDataPacket[]>('SELECT * FROM stores WHERE id = ?', [id]);
     return rows.length ? (rows[0] as Store) : null;
   },
+
+  async findByName(name: string): Promise<Store | null> {
+    const [rows] = await pool.execute<RowDataPacket[]>('SELECT * FROM stores WHERE name = ?', [name]);
+    return rows.length ? (rows[0] as Store) : null;
+  },
 };

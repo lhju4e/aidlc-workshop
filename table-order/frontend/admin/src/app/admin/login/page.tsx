@@ -7,7 +7,7 @@ import { authService } from '@/services/authService';
 import { useAuthStore } from '@/stores/authStore';
 
 export default function LoginPage() {
-  const [storeId, setStoreId] = useState('');
+  const [storeName, setStoreName] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
@@ -20,8 +20,8 @@ export default function LoginPage() {
     setError(null);
     setIsLoading(true);
     try {
-      const { data } = await authService.login({ storeId, username, password });
-      setAuth(data.token, data.store ?? { id: data.storeId ?? storeId, name: '', createdAt: '' });
+      const { data } = await authService.login({ storeName, username, password });
+      setAuth(data.token, data.store ?? { id: data.storeId ?? '', name: storeName, createdAt: '' });
       router.push('/admin/dashboard');
     } catch (err: unknown) {
       const msg = (err as { response?: { data?: { message?: string } } })?.response?.data?.message ?? '로그인에 실패했습니다.';
@@ -36,7 +36,7 @@ export default function LoginPage() {
       <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-md w-full max-w-sm" data-testid="login-form">
         <h1 className="text-xl font-bold mb-4">관리자 로그인</h1>
         {error && <p className="text-red-600 text-sm mb-3" data-testid="login-error">{error}</p>}
-        <input data-testid="login-store-id" value={storeId} onChange={(e) => setStoreId(e.target.value)} placeholder="매장 식별자" required className="w-full border rounded px-3 py-2 mb-3 text-sm" />
+        <input data-testid="login-store-name" value={storeName} onChange={(e) => setStoreName(e.target.value)} placeholder="매장명" required className="w-full border rounded px-3 py-2 mb-3 text-sm" />
         <input data-testid="login-username" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="사용자명" required className="w-full border rounded px-3 py-2 mb-3 text-sm" />
         <input data-testid="login-password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="비밀번호" required className="w-full border rounded px-3 py-2 mb-4 text-sm" />
         <button data-testid="login-submit" type="submit" disabled={isLoading} className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 disabled:opacity-50 text-sm">

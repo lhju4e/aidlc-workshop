@@ -7,6 +7,7 @@ import NotificationToggle from '@/components/common/NotificationToggle';
 
 const navItems = [
   { href: '/admin/dashboard', label: '대시보드' },
+  { href: '/admin/tables', label: '테이블 관리' },
   { href: '/admin/menus', label: '메뉴 관리' },
   { href: '/admin/payments', label: '결제 관리' },
   { href: '/admin/history', label: '주문 내역' },
