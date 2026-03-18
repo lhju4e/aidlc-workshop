@@ -27,8 +27,13 @@ export const useAuthStore = create<AuthState>((set) => ({
   hydrate: () => {
     const token = localStorage.getItem('token');
     const storeData = localStorage.getItem('store');
-    if (token && storeData) {
-      set({ token, store: JSON.parse(storeData), isAuthenticated: true });
+    if (token && storeData && storeData !== 'undefined') {
+      try {
+        set({ token, store: JSON.parse(storeData), isAuthenticated: true });
+      } catch {
+        localStorage.removeItem('token');
+        localStorage.removeItem('store');
+      }
     }
   },
 }));

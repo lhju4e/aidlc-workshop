@@ -13,8 +13,10 @@ import LoadingSpinner from '@/components/common/LoadingSpinner';
 import ErrorBanner from '@/components/common/ErrorBanner';
 
 export default function MenuManagementPage() {
-  const { store } = useAuthStore();
+  const { store, hydrate } = useAuthStore();
   const { menus, categories, setMenus, setCategories, addMenu, updateMenu, removeMenu, reorderMenus } = useMenuStore();
+
+  useEffect(() => { hydrate(); }, [hydrate]);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [editingMenu, setEditingMenu] = useState<Menu | null>(null);
@@ -23,13 +25,14 @@ export default function MenuManagementPage() {
   const [error, setError] = useState<string | null>(null);
 
   const load = useCallback(async () => {
-    if (!store) return;
+    if (!store) { setLoading(false); return; }
     try {
       setLoading(true);
       const [mRes, cRes] = await Promise.all([menuService.getMenus(store.id), menuService.getCategories(store.id)]);
+      console.log('categories loaded:', cRes.data);
       setMenus(mRes.data);
       setCategories(cRes.data);
-    } catch { setError('메뉴를 불러오지 못했습니다.'); }
+    } catch (e) { console.error('menu load error:', e); setError('메뉴를 불러오지 못했습니다.'); }
     finally { setLoading(false); }
   }, [store, setMenus, setCategories]);
 
@@ -41,8 +44,13 @@ export default function MenuManagementPage() {
   const handleSubmit = async (data: MenuFormData) => {
     try {
       if (editingMenu) {
-        const { data: updated } = await menuService.updateMenu(editingMenu.id, { name: data.name, price: data.price, description: data.description, categoryId: data.categoryId });
-        if (data.image) await menuService.uploadImage(editingMenu.id, data.image);
+        const formData = new FormData();
+        formData.append('name', data.name);
+        formData.append('price', String(data.price));
+        formData.append('description', data.description);
+        formData.append('categoryId', data.categoryId);
+        if (data.image) formData.append('image', data.image);
+        const { data: updated } = await menuService.updateMenu(editingMenu.id, formData as unknown as Partial<Menu>);
         updateMenu(editingMenu.id, updated);
       } else {
         const formData = new FormData();
@@ -57,6 +65,7 @@ export default function MenuManagementPage() {
       }
       setIsFormOpen(false);
       setEditingMenu(null);
+      load();
     } catch { setError('메뉴 저장에 실패했습니다.'); }
   };
 

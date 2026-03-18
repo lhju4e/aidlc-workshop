@@ -19,7 +19,7 @@ function SortableMenuItem({ menu, onEdit, onDelete }: { menu: Menu; onEdit: (m: 
   return (
     <div ref={setNodeRef} style={style} className="flex items-center gap-3 bg-white border rounded p-3" data-testid={`menu-item-${menu.id}`}>
       <button {...attributes} {...listeners} className="cursor-grab text-gray-400 hover:text-gray-600" aria-label="드래그하여 순서 변경">⠿</button>
-      {menu.imageUrl && <img src={menu.imageUrl} alt={menu.name} className="w-10 h-10 rounded object-cover" />}
+      {menu.imageUrl && <img src={`${process.env.NEXT_PUBLIC_API_URL?.replace('/api', '')}${menu.imageUrl}`} alt={menu.name} className="w-10 h-10 rounded object-cover" />}
       <div className="flex-1 min-w-0">
         <div className="font-medium text-sm truncate">{menu.name}</div>
         <div className="text-xs text-gray-500">{menu.price.toLocaleString()}원</div>
