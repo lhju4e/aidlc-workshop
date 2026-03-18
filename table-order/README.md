@@ -88,7 +88,7 @@ cd table-order/frontend/admin && npm run dev
 | 앱 | 로그인 정보 |
 |---|---|
 | Admin | 매장명: `테스트매장` / 사용자명: `admin` / 비밀번호: `password123` |
-| Customer | 매장ID: `f0e2a614-5167-45a4-8ac2-eeaaa3f5f739` / 테이블: `1` / 비밀번호: `table1234` |
+| Customer | 매장명: `테스트매장` / 테이블번호: `1` / 비밀번호: `table1234` |
 
 ## 프로젝트 구조
 
